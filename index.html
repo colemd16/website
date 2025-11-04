@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Danny Coleman · Asipring Security Analyst</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      color-scheme: light dark;
+      --bg: #0f172a;
+      --bg-alt: rgba(15, 23, 42, 0.75);
+      --text: rgba(241, 245, 249, 0.92);
+      --muted: rgba(148, 163, 184, 0.9);
+      --accent: #38bdf8;
+      --accent-soft: rgba(56, 189, 248, 0.18);
+      --card-bg: rgba(15, 23, 42, 0.78);
+    }
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+      background: radial-gradient(circle at top right, rgba(56, 189, 248, 0.12), transparent 45%),
+                  radial-gradient(circle at bottom left, rgba(124, 58, 237, 0.11), transparent 50%),
+                  var(--bg);
+      color: var(--text);
+      display: flex;
+      justify-content: center;
+      padding: 3rem 1.5rem 5rem;
+    }
+    main {
+      width: min(960px, 100%);
+      backdrop-filter: blur(18px);
+      background: rgba(15, 23, 42, 0.6);
+      border: 1px solid rgba(148, 163, 184, 0.15);
+      border-radius: 24px;
+      padding: clamp(2.5rem, 5vw, 4.25rem);
+      box-shadow: 0 32px 64px rgba(15, 23, 42, 0.45);
+    }
+    header {
+      display: grid;
+      gap: 1.5rem;
+    }
+    nav {
+      display: flex;
+      justify-content: flex-end;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+    nav a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 0.95rem;
+      padding: 0.35rem 0.9rem;
+      border-radius: 999px;
+      border: 1px solid transparent;
+      transition: color 160ms ease, border-color 160ms ease, transform 160ms ease;
+    }
+    nav a:hover {
+      color: var(--text);
+      border-color: rgba(56, 189, 248, 0.35);
+      transform: translateY(-1px);
+    }
+    .intro {
+      display: grid;
+      gap: 2.25rem;
+      align-items: stretch;
+      grid-template-columns: minmax(150px, 220px) minmax(0, 1fr);
+      margin-top: 1rem;
+    }
+    .eyebrow {
+      font-size: 0.9rem;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    .intro-photo {
+      width: 100%;
+      height: 100%;
+      border-radius: 20px;
+      object-fit: cover;
+      border: 2px solid rgba(56, 189, 248, 0.35);
+      box-shadow: 0 16px 36px rgba(15, 23, 42, 0.4);
+    }
+    .intro-copy {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 1.25rem;
+    }
+    h1 {
+      margin: 0;
+      font-size: clamp(2.8rem, 5.2vw, 3.8rem);
+      letter-spacing: -0.02em;
+      line-height: 1.05;
+    }
+    .lead {
+      font-size: clamp(1.05rem, 2.3vw, 1.25rem);
+      color: var(--muted);
+      max-width: 54ch;
+      line-height: 1.7;
+    }
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-top: 0.5rem;
+    }
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 999px;
+      padding: 0.7rem 1.4rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: transform 160ms ease, box-shadow 160ms ease, background 160ms ease;
+    }
+    .button.primary {
+      background: linear-gradient(135deg, rgba(56, 189, 248, 0.92), rgba(14, 165, 233, 0.88));
+      color: #020617;
+      box-shadow: 0 14px 32px rgba(56, 189, 248, 0.35);
+    }
+    .button.primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 18px 38px rgba(56, 189, 248, 0.45);
+    }
+    .button.secondary {
+      color: var(--text);
+      border: 1px solid rgba(148, 163, 184, 0.35);
+      background: rgba(15, 23, 42, 0.5);
+    }
+    .button.secondary:hover {
+      border-color: rgba(56, 189, 248, 0.35);
+      transform: translateY(-2px);
+    }
+    section {
+      margin-top: clamp(3rem, 6vw, 4.5rem);
+    }
+    .section-title {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.7rem;
+      font-size: 1rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 2rem;
+    }
+    .section-title::before {
+      content: "";
+      width: 42px;
+      height: 1px;
+      background: rgba(148, 163, 184, 0.35);
+    }
+    .about-grid {
+      display: grid;
+      gap: 2.5rem;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    }
+    .stat {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      padding: 1.8rem;
+      border-radius: 20px;
+      background: var(--card-bg);
+      border: 1px solid rgba(148, 163, 184, 0.12);
+    }
+    .stat strong {
+      font-size: 2rem;
+      color: var(--accent);
+      letter-spacing: -0.04em;
+    }
+    .stat span {
+      font-size: 0.95rem;
+      color: var(--muted);
+    }
+    .skills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+    }
+    .chip {
+      padding: 0.4rem 1rem;
+      border-radius: 999px;
+      background: var(--accent-soft);
+      color: var(--accent);
+      font-size: 0.9rem;
+    }
+    .project-grid {
+      display: grid;
+      gap: 1.8rem;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    }
+    .project-card {
+      padding: 1.8rem;
+      border-radius: 20px;
+      background: var(--card-bg);
+      border: 1px solid rgba(148, 163, 184, 0.12);
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      transition: transform 160ms ease, border-color 160ms ease;
+    }
+    .project-card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(56, 189, 248, 0.28);
+    }
+    .project-card h3 {
+      margin: 0;
+      font-size: 1.3rem;
+    }
+    .project-card p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+    .project-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+      margin-top: auto;
+    }
+    .project-meta span {
+      font-size: 0.85rem;
+      padding: 0.35rem 0.75rem;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.25);
+      color: var(--muted);
+    }
+    .project-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 600;
+      margin-top: 0.75rem;
+    }
+    .project-link svg {
+      width: 16px;
+      height: 16px;
+    }
+    .contact {
+      padding: 2.5rem;
+      border-radius: 24px;
+      border: 1px solid rgba(56, 189, 248, 0.3);
+      background: linear-gradient(135deg, rgba(56, 189, 248, 0.18), rgba(14, 165, 233, 0.12));
+      text-align: center;
+      display: grid;
+      gap: 1rem;
+    }
+    .contact p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 1.05rem;
+    }
+    .socials {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+    .socials a {
+      color: var(--text);
+      text-decoration: none;
+      font-weight: 500;
+      border-bottom: 1px solid transparent;
+      padding-bottom: 0.2rem;
+      transition: border-color 160ms ease, color 160ms ease;
+    }
+    .socials a:hover {
+      border-color: rgba(56, 189, 248, 0.5);
+      color: var(--accent);
+    }
+    footer {
+      margin-top: 3.5rem;
+      color: rgba(148, 163, 184, 0.7);
+      font-size: 0.85rem;
+      text-align: center;
+    }
+    @media (max-width: 640px) {
+      body {
+        padding: 2rem 1rem 3rem;
+      }
+      nav {
+        justify-content: center;
+      }
+      main {
+        padding: 2.2rem;
+      }
+      .intro {
+        grid-template-columns: 1fr;
+        justify-items: center;
+        text-align: center;
+      }
+      .intro-photo {
+        max-width: 240px;
+        height: 240px;
+      }
+      .intro-copy {
+        align-items: center;
+      }
+      .hero-actions {
+        justify-content: center;
+      }
+      .contact {
+        padding: 2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <header>
+      <nav aria-label="Primary">
+        <a href="#about">About</a>
+        <a href="#projects">Projects</a>
+        <a href="#contact">Contact</a>
+      </nav>
+      <div class="intro">
+        <img class="intro-photo" src="images/profile.PNG" alt="Portrait of Danny Coleman">
+        <div class="intro-copy">
+          <div class="eyebrow">Aspiring Security Analyst</div>
+          <h1>Hi, I’m Danny Coleman.</h1>
+          <p class="lead">
+            I’m transitioning into cybersecurity with a background in hands-on tech support and a knack for solving
+            tricky problems under pressure. I’m documenting my journey, sharpening my defensive skills, and looking for
+            the right opportunity to learn from a driven security team.
+          </p>
+          <div class="hero-actions">
+            <a class="button secondary" href="Danny-Coleman-Resume.pdf">Download resume</a>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <section id="about">
+      <div class="section-title">About</div>
+      <div class="about-grid">
+        <div>
+          <p>
+            Acquired Knowledge
+          </p>
+          <div class="skills">
+            <span class="chip">Linux Fundamentals</span>
+            <span class="chip">Networking Fundamentals</span>
+            <span class="chip">Cryptography - SHA256, MD5, symmetric, asymmetric</span>
+            <span class="chip">Wireshark - packet analysis</span>
+            <span class="chip">Windows Active Directory</span>
+            <span class="chip">Python</span>
+            <span class="chip">Data Analysis</span>
+          </div>
+        </div>
+        <div class="stat">
+          <strong>AS Computer Information Systems</strong>
+          <span>Hudson Valley Community College</span>
+        </div>
+        <div class="stat">
+          <strong>3.64</strong>
+          <span>GPA</span>
+        </div>
+        <div class="stat">
+          <strong>Data Analyst Role</strong>
+          <span>In the Summer of 2025 I worked as part of the Data Analytics team for the Tri-City ValleyCats Baseball Club. Using Python to clean and organize data for visualization and presentation to club management.</span>
+        </div>
+      </div>
+    </section>
+
+    <section id="projects">
+      <div class="section-title">Selected Work</div>
+      <div class="project-grid">
+        <article class="project-card">
+          <h3>Signalboard</h3>
+          <p>
+            SaaS dashboard for real-time logistics monitoring. I architected the data pipeline,
+            implemented the React UI library, and delivered a web experience that handles millions
+            of events per day without breaking a sweat.
+          </p>
+          <div class="project-meta">
+            <span>Next.js</span>
+            <span>GraphQL</span>
+            <span>WebSockets</span>
+          </div>
+          <a class="project-link" href="https://yourprojectlink.com" target="_blank" rel="noopener">
+            View project
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+              <path d="M11.25 3a.75.75 0 000 1.5h3.69l-8.72 8.72a.75.75 0 101.06 1.06l8.72-8.72v3.69a.75.75 0 001.5 0V3.75A.75.75 0 0015.75 3h-4.5z"/>
+              <path d="M5.5 4A1.5 1.5 0 004 5.5v9A1.5 1.5 0 005.5 16h9a1.5 1.5 0 001.5-1.5v-3a.75.75 0 00-1.5 0v3a.5.5 0 01-.5.5h-9a.5.5 0 01.5-.5v-9a.5.5 0 01.5-.5h3a.75.75 0 000-1.5h-3z"/>
+            </svg>
+          </a>
+        </article>
+
+        <article class="project-card">
+          <h3>Beacon Commerce</h3>
+          <p>
+            Headless e-commerce storefront that boosted checkout conversions by 32%.
+            I led the frontend rebuild, introduced automated visual testing, and launched
+            an accessible design system across the org.
+          </p>
+          <div class="project-meta">
+            <span>Remix</span>
+            <span>Design Systems</span>
+            <span>Playwright</span>
+          </div>
+          <a class="project-link" href="https://anotherlink.com" target="_blank" rel="noopener">
+            Read the case study
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+              <path d="M11.25 3a.75.75 0 000 1.5h3.69l-8.72 8.72a.75.75 0 101.06 1.06l8.72-8.72v3.69a.75.75 0 001.5 0V3.75A.75.75 0 0015.75 3h-4.5z"/>
+              <path d="M5.5 4A1.5 1.5 0 004 5.5v9A1.5 1.5 0 005.5 16h9a1.5 1.5 0 001.5-1.5v-3a.75.75 0 00-1.5 0v3a.5.5 0 01-.5.5h-9a.5.5 0 01.5-.5v-9a.5.5 0 01.5-.5h3a.75.75 0 000-1.5h-3z"/>
+            </svg>
+          </a>
+        </article>
+
+        <article class="project-card">
+          <h3>Neighborhood Atlas</h3>
+          <p>
+            Interactive map that spotlights community programs across the city. Built a geospatial API,
+            server-rendered views for SEO, and layered in delightful micro-interactions for desktop and mobile.
+          </p>
+          <div class="project-meta">
+            <span>Mapbox</span>
+            <span>Node.js</span>
+            <span>Accessibility</span>
+          </div>
+          <a class="project-link" href="https://yetanotherlink.com" target="_blank" rel="noopener">
+            Explore the map
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+              <path d="M11.25 3a.75.75 0 000 1.5h3.69l-8.72 8.72a.75.75 0 101.06 1.06l8.72-8.72v3.69a.75.75 0 001.5 0V3.75A.75.75 0 0015.75 3h-4.5z"/>
+              <path d="M5.5 4A1.5 1.5 0 004 5.5v9A1.5 1.5 0 005.5 16h9a1.5 1.5 0 001.5-1.5v-3a.75.75 0 00-1.5 0v3a.5.5 0 01-.5.5h-9a.5.5 0 01.5-.5v-9a.5.5 0 01.5-.5h3a.75.75 0 000-1.5h-3z"/>
+            </svg>
+          </a>
+        </article>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="section-title">Contact and Social</div>
+      <div class="contact">
+        <h2>Contact Me</h2>
+        <p>
+          If you are looking for someone who is willing to go above and beyond, look no further.
+        </p>
+        <a class="button primary" href="mailto:coleman2dan@gmail.com">coleman2dan@gmail.com</a>
+        <div class="socials">
+          <a href="https://github.com/yourhandle" target="_blank" rel="noopener">GitHub</a>
+          <a href="https://www.linkedin.com/in/yourhandle" target="_blank" rel="noopener">LinkedIn</a>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      © <span id="year"></span> Danny Coleman — Powered by home lab server
+    </footer>
+  </main>
+
+  <script>
+    // Keep footer year current without any maintenance.
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>

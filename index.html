@@ -330,12 +330,10 @@
           <div class="eyebrow">Aspiring Security Analyst</div>
           <h1>Hi, I’m Danny Coleman.</h1>
           <p class="lead">
-            I’m transitioning into cybersecurity with a background in hands-on tech support and a knack for solving
-            tricky problems under pressure. I’m documenting my journey, sharpening my defensive skills, and looking for
-            the right opportunity to learn from a driven security team.
+            I'm looking for an opportunity to make an impact in an IT environment. While studying CIS, I've invested extra time understanding key concepts and fundamentals. I've learned enough to know there's much more to learn—and I'm eager for the right opportunity to grow. For more info explore my work and documentation below.
           </p>
           <div class="hero-actions">
-            <a class="button secondary" href="Danny-Coleman-Resume.pdf">Download resume</a>
+            <a class="button secondary" href="files/danny_resume.pdf">Download resume</a>
           </div>
         </div>
       </div>
@@ -378,41 +376,36 @@
     </section>
 
     <section id="projects">
-      <div class="section-title">Selected Work</div>
+      <div class="section-title">Project Experience</div>
       <div class="project-grid">
         <article class="project-card">
           <h3>Video Cutting/Statistical Overlay</h3>
-          <p>
-            Python script to take trackman data and video footage from a baseball game, use trackman timestamps to cut video into individual at-bat clips, overlayed with velocity, location, and hitting metrics
-          </p>
+          <p>→ Python script to take trackman data and video footage from a baseball game</p>
+          <p>→ Use trackman timestamps to cut video into individual at-bat clips</p>
+          <p>→ Overlayed with velocity, location, and hitting metrics</p>
           <div class="project-meta">
-            <span>Next.js</span>
-            <span>GraphQL</span>
-            <span>WebSockets</span>
+            <span>Python</span>
+            <span>Pandas</span>
+            <span>MoviePy</span>
           </div>
-          <a class="project-link" href="https://yourprojectlink.com" target="_blank" rel="noopener">
-            View project
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-              <path d="M11.25 3a.75.75 0 000 1.5h3.69l-8.72 8.72a.75.75 0 101.06 1.06l8.72-8.72v3.69a.75.75 0 001.5 0V3.75A.75.75 0 0015.75 3h-4.5z"/>
-              <path d="M5.5 4A1.5 1.5 0 004 5.5v9A1.5 1.5 0 005.5 16h9a1.5 1.5 0 001.5-1.5v-3a.75.75 0 00-1.5 0v3a.5.5 0 01-.5.5h-9a.5.5 0 01.5-.5v-9a.5.5 0 01.5-.5h3a.75.75 0 000-1.5h-3z"/>
-            </svg>
-          </a>
         </article>
 
         <article class="project-card">
-          <h3>Beacon Commerce</h3>
-          <p>
-            Headless e-commerce storefront that boosted checkout conversions by 32%.
-            I led the frontend rebuild, introduced automated visual testing, and launched
-            an accessible design system across the org.
-          </p>
+          <h3>File Sharing Dashboard</h3>
+          <p>→ Created a proprietary cloud service for local companies</p>
+          <p>→ Running on my own server</p>
+          <p>→ Established firewall rules and used Cloudflare to encrypt data transfer from outside the LAN</p>
+          <p>→ Created the web dashboard using Flask</p>
+          <p>→ Served with Gunicorn with Nginx as a proxy</p>
           <div class="project-meta">
-            <span>Remix</span>
-            <span>Design Systems</span>
-            <span>Playwright</span>
+            <span>Linux</span>
+            <span>Flask</span>
+            <span>Gunicorn</span>
+            <span>Nginx</span>
+            <span>Cloudflare</span>
           </div>
-          <a class="project-link" href="https://anotherlink.com" target="_blank" rel="noopener">
-            Read the case study
+          <a class="project-link" href="https://sftp.serversamuel.com" target="_blank" rel="noopener">
+            sftp.serversamuel.com
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
               <path d="M11.25 3a.75.75 0 000 1.5h3.69l-8.72 8.72a.75.75 0 101.06 1.06l8.72-8.72v3.69a.75.75 0 001.5 0V3.75A.75.75 0 0015.75 3h-4.5z"/>
               <path d="M5.5 4A1.5 1.5 0 004 5.5v9A1.5 1.5 0 005.5 16h9a1.5 1.5 0 001.5-1.5v-3a.75.75 0 00-1.5 0v3a.5.5 0 01-.5.5h-9a.5.5 0 01.5-.5v-9a.5.5 0 01.5-.5h3a.75.75 0 000-1.5h-3z"/>
@@ -452,7 +445,7 @@
         <a class="button primary" href="mailto:coleman2dan@gmail.com">coleman2dan@gmail.com</a>
         <div class="socials">
           <a href="https://github.com/colemd16" target="_blank" rel="noopener">GitHub</a>
-          <a href="https://www.linkedin.com/in/yourhandle" target="_blank" rel="noopener">LinkedIn</a>
+          <a href="https://www.linkedin.com/in/daniel-coleman-05001b33a/" target="_blank" rel="noopener">LinkedIn</a>
         </div>
       </div>
     </section>
@@ -465,6 +458,17 @@
   <script>
     // Keep footer year current without any maintenance.
     document.getElementById('year').textContent = new Date().getFullYear();
+    // Normalize intro text and heading
+    (function() {
+      var lead = document.querySelector('.lead');
+      if (lead) {
+        lead.textContent = "I'm looking for an opportunity to make an impact in an IT environment. While studying CIS, I've invested extra time mastering key concepts and fundamentals. I've learned enough to know there's much more to learn—and I'm eager for the right opportunity to grow. Interested? Explore my work and info below.";
+      }
+      var heading = document.querySelector('.intro-copy h1');
+      if (heading) {
+        heading.textContent = "Hi, I'm Danny Coleman.";
+      }
+    })();
   </script>
 </body>
 </html>
